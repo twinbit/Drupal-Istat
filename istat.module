@@ -1,0 +1,85 @@
+<?php
+
+/* Default Proxy to istat webservice */
+define(DEFAULT_PROXY, "http://www.vincenzopatruno.org/dir/bilanciowidget_wp.php");
+
+/**
+ * Implementation of hook_theme();
+ */
+function istat_theme() {
+  return array(
+    'istat_block_population' => array(
+      'arguments' => array('code' => null, 'width' => null, 'height' => null, 'url' => null),
+      'template' => 'istat_block_population',
+      'path' => drupal_get_path('module', 'istat') .'/theme',
+  ));
+}
+
+/**
+ * Implementation of hook_block
+ *
+ */
+function istat_block($op = 'list', $delta = 0, $edit = array()) {
+  switch ($op) {
+    case 'list':
+      $info = array(
+        'population' => array('info' => t('Istat: Municipality Population'))
+      );
+      return $info;  
+    case 'configure':
+      if ($delta == 'population') {
+        $form['url'] = array(
+              '#type' => 'textfield', 
+              '#title' => t('Web Service Proxy url'), 
+              '#default_value' => variable_get('istat_municipality_url', DEFAULT_PROXY),
+              '#description' => t('Web Service proxy url, please insert without trailing slash.'),
+              '#element_validate' => array('istat_url_validator')            
+        );
+        $form['code'] = array(
+              '#type' => 'textfield', 
+              '#title' => t('Municipality code'), 
+              '#default_value' => variable_get('istat_municipality_code', ''),
+              '#description' => t('Municipality code as requested by Istat Web Service, follow this <a href="@url" target="_blank"> link </a> to take requested code.', array('@url' => 'http://www.vincenzopatruno.org/2010/02/19/application-sharing/'))            
+        );
+        $form['width'] = array(
+              '#type' => 'textfield', 
+              '#title' => t('Widget iframe width'), 
+              '#default_value' => variable_get('istat_municipality_width', '200'),
+              '#description' => t('Iframe width'),
+              '#size' => 3           
+        );
+        $form['height'] = array(
+              '#type' => 'textfield', 
+              '#title' => t('Widget iframe height'), 
+              '#default_value' => variable_get('istat_municipality_height', '300'),
+              '#description' => t('Iframe height'),
+              '#size' => 3        
+        );
+        return $form;
+      }
+      break;
+    case 'save': 
+      if ($delta == 'population') {
+        variable_set('istat_municipality_code', $edit['code']);
+        variable_set('istat_municipality_width', $edit['width']);
+        variable_set('istat_municipality_height', $edit['height']);
+        variable_set('istat_municipality_url', $edit['url']);
+      }
+      break;
+    case 'view':
+      module_load_include('inc', 'istat', 'istat.block');
+      $function = "_istat_block_{$delta}";
+      if (function_exists($function)) {
+        $output = call_user_func($function);
+        return $output;
+      }
+      break;
+  }
+}
+
+
+function istat_url_validator($element, &$form_state) {  
+  if (!(valid_url($element['#value'], true))) {
+    form_error($element, t('URL entered is not valid, please correct.'));  
+  }
+}

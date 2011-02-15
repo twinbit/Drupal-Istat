@@ -1,0 +1,6 @@
+name = Istat
+description = Put official data about resident population in italian municipalities on your site directely from ISTAT, the italian statistical office.
+package = Other
+version = 6.x-1.0
+core = 6.x
+
