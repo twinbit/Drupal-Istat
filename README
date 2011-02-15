@@ -19,7 +19,7 @@ INSTALLATION
 2. At admin/build/modules enable the istat module.
 3. Configure the block at admin/build/block.
 
-PRIVACY ISSUE
+PRIVACY ISSUES
 ------------
 
 Actually proxy is hosted on http://www.vincenzopatruno.org website, next version will have a self hosted proxy service, probably Vincenzo will release the proxy code with MIT license.
