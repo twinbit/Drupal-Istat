@@ -15,6 +15,6 @@ Thanks to Spaghetti Opendata working group:
 
 INSTALLATION
 ------------
-1. Copy istato folder to modules directory.
+1. Copy istat folder to modules directory.
 2. At admin/build/modules enable the istat module.
 3. Configure the block at admin/build/block.
