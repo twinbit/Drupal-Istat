@@ -1,0 +1,8 @@
+<?php
+
+function istat_uninstall() {
+  variable_del('istat_municipality_code');
+  variable_del('istat_municipality_width');
+  variable_del('istat_municipality_height');
+  variable_del('istat_municipality_url');
+}
