@@ -1,0 +1,20 @@
+INTRODUCTION
+------------
+Maintainer: Paolo Mainardi (paolo@twinbit.it)
+Documentation (not available): http://www.twinbit.it
+
+Based on excellent work of Vincenzo Patruno:
+
+* http://www.vincenzopatruno.org/2010/02/19/application-sharing/
+* http://segnalazionit.org/2011/02/un-plugin-ufficiale-wordpress-per-la-visualizzazione-dei-dati-istat-sulla-popolazione/
+
+Thanks to Spaghetti Opendata working group:
+
+* http://www.spaghettiopendata.org/
+
+
+INSTALLATION
+------------
+1. Copy istato folder to modules directory.
+2. At admin/build/modules enable the istat module.
+3. Configure the block at admin/build/block.
