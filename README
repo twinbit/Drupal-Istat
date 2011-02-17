@@ -23,3 +23,5 @@ PRIVACY ISSUES
 ------------
 
 Actually proxy is hosted on http://www.vincenzopatruno.org website, next version will have a self hosted proxy service, probably Vincenzo will release the proxy code with MIT license.
+
+You can find an alpha version (not usable at the time of writing) of refactored Proxy service to Istat data: https://github.com/twinbit/Widget-Istat
